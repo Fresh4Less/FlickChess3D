@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(Input.GetMouseButtonDown(0))
+			flickChessPieceAtMouse();
 	}
 
 	void startNewGameLocal()
@@ -93,25 +94,29 @@ public class GameManager : MonoBehaviour {
 				chessPieces.Add(obj);
 			}
 		}
-/*
-		//file, rank (start at 0)
-		Vector2 whiteRook1BoardPos = new Vector2(0,0);
-		Vector2 whiteKnight1BoardPos = new Vector2(1,0);
-		Vector2 whiteBishop1BoardPos = new Vector2(2,0);
-		Vector2 whiteQueenBoardPos = new Vector2(3,0);
-		Vector2 whiteKingBoardPos = new Vector2(4,0);
-		Vector2 whiteBishop2BoardPos = new Vector2(5,0);
-		Vector2 whiteKnight2BoardPos = new Vector2(6,0);
-		Vector2 whiteRook2BoardPos = new Vector2(7,0);
+	}
 
-		GameObject whiteRook1 = (GameObject) Instantiate(BlackRook_Prefab, 
-													new Vector3(whiteRook1BoardPos.x * squareSize.x + boardOffset.x,
-														-BlackRook_Prefab.transform.Find("Base").position.y + boardOffset.y,
-														whiteRook1BoardPos.z * squareSize.y + boardOffset.z), 
-													Quaternion.identity);
+	void flickChessPieceAtMouse()
+	{
+		// Make sure the user pressed the mouse down
+		if (!Input.GetMouseButtonDown (0))
+			return;
 
-		chessPieces.Add(whiteRook1);
-		*/
+		 Camera mainCamera = Camera.main;
+			
+		// We need to actually hit an object
+		RaycastHit hit;
+		Ray rayToMouse = mainCamera.ScreenPointToRay(Input.mousePosition);
+		if (!Physics.Raycast(rayToMouse, out hit, 100))
+			return;
+		// We need to hit a rigidbody that is not kinematic
+		if (!hit.rigidbody || hit.rigidbody.isKinematic)
+			return;
+		//make sure it's a chesspiece
+		if(hit.transform.tag != "ChessPiece")
+			return;
+
+			hit.rigidbody.AddForceAtPosition(rayToMouse.direction * 1000, hit.point);
 	}
 
 	//key - none = 0, 
