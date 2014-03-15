@@ -91,6 +91,8 @@ public class GameManager : MonoBehaviour {
 														 			 -objPrefab.transform.Find("Base").position.y + boardOffset.y,
 														 			 rank * squareSize.y + boardOffset.z), 
 														 Quaternion.identity);
+				if(pieceType > 6) //is a black piece
+					obj.transform.Rotate(new Vector3(0,180,0));
 				chessPieces.Add(obj);
 			}
 		}
