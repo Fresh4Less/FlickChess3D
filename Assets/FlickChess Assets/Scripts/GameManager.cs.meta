@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: e2451c3d7d55d9843bb791babd9a6ebd
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - BlackBishop_Prefab: {fileID: 100000, guid: cc8016bdc73327d43b7f752ba8cee228, type: 2}
+  - BlackKing_Prefab: {fileID: 100000, guid: cf789ce4d851fd04095bbbf6e3d763b8, type: 2}
+  - BlackKnight_Prefab: {fileID: 100000, guid: b988fe7f432079b43bb786e961612d99, type: 2}
+  - BlackPawn_Prefab: {fileID: 100000, guid: dfe5cf856167c204086c531383d30ef6, type: 2}
+  - BlackQueen_Prefab: {fileID: 100000, guid: 950f91c0de25dbd4f89e4109b0910948, type: 2}
+  - BlackRook_Prefab: {fileID: 100000, guid: de46c6fccd394e5418dda611c22417ec, type: 2}
+  - WhiteBishop_Prefab: {fileID: 100000, guid: e963ed1c8447b1b42a0ee72b2f84d91e, type: 2}
+  - WhiteKing_Prefab: {fileID: 100000, guid: df57d59011af8ee4c8d0806e86e53f54, type: 2}
+  - WhiteKnight_Prefab: {fileID: 100000, guid: 3fb76705724eb28459a00801ff9b20be, type: 2}
+  - WhitePawn_Prefab: {fileID: 100000, guid: 362c92f344ab3ff45ac939ff7a1e8c49, type: 2}
+  - WhiteQueen_Prefab: {fileID: 100000, guid: fc245d98e77a6084c9b7c7cb5f548d26, type: 2}
+  - WhiteRook_Prefab: {fileID: 100000, guid: 8b88257d9d84e2f4ab2f3279752c8302, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
