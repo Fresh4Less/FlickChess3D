@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
+  - 82: {fileID: 8200000}
   m_Layer: 0
   m_Name: Black_Knight
   m_TagString: ChessPiece
@@ -468,6 +470,69 @@ MeshCollider:
   m_SmoothSphereCollisions: 1
   m_Convex: 1
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!82 &8200000
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: .00200000009
+      value: 1
+      inSlope: 0
+      outSlope: -1.00200403
+      tangentMode: 0
+    - time: .208513275
+      value: .846853614
+      inSlope: -.394891739
+      outSlope: -.394891739
+      tangentMode: 0
+    - time: 1
+      value: .767676771
+      inSlope: -.0805508494
+      outSlope: -.0805508494
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9500000
 Animator:
   serializedVersion: 2
@@ -482,6 +547,24 @@ Animator:
   m_ApplyRootMotion: 1
   m_AnimatePhysics: 0
   m_HasTransformHierarchy: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fd1f9b3400b29f43a01416ae02be62a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionSounds:
+  - {fileID: 8300000, guid: 9de8656e5c39b4642941d21020f059b1, type: 3}
+  - {fileID: 8300000, guid: df09be8d885a8e241bc1c71ef15ee202, type: 3}
+  - {fileID: 8300000, guid: 9bfc92e854fcddb41aa676a7c3d86db4, type: 3}
+  collisionSlowMotionSound: {fileID: 8300000, guid: 942df957108249a4082759b11d926158,
+    type: 3}
+  team: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

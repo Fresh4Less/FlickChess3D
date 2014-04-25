@@ -4,6 +4,9 @@ using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
+	public AudioClip enterSlowMotionSound;
+	public AudioClip exitSlowMotionSound;
+
 	public GameObject BlackBishop_Prefab;
 	public GameObject BlackKing_Prefab;
 	public GameObject BlackKnight_Prefab;
@@ -25,9 +28,25 @@ public class GameManager : MonoBehaviour {
 	private Vector3 boardOffset = new Vector3(-3.5f,0.0f,-3.5f);
 	private Vector2 squareSize = new Vector3(1.0f,1.0f);
 
+	//instant replay
+	private GameObject lastPieceLaunched;
+	static private bool slowMotion;
+	private bool checkSlowMotion;
+	private float slowMotionTimer;
+	public static float slowMotionTriggerDistance = 2.0f;
+	public static float slowMotionTriggerSpeed = 0.01f;
+	public static float slowMotionMinDuration = 1.0f;
+	public static float slowMotionDilation = 0.25f;
+
+
 
 	void Start () 
 	{
+		slowMotion = false;
+		checkSlowMotion = false;
+		slowMotionTimer = 0.0f;
+
+
 		chessPieces = new List<GameObject>();
 
 		chessPiecePrefabs = new List<GameObject>();
@@ -50,6 +69,18 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(slowMotion)
+			updateSlowMotion();
+
+		if(checkSlowMotion)
+		{
+			if(doSlowMotionCheck())
+			{
+				activateSlowMotion();
+			}
+		}
+
 		if(Input.GetMouseButtonDown(0))
 			flickChessPieceAtMouse();
 	}
@@ -118,8 +149,63 @@ public class GameManager : MonoBehaviour {
 		if(hit.transform.tag != "ChessPiece")
 			return;
 
-			hit.rigidbody.AddForceAtPosition(rayToMouse.direction * 1000, hit.point);
+			hit.rigidbody.AddForceAtPosition(rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+
+			lastPieceLaunched = hit.transform.gameObject;
+			checkSlowMotion = true;
 	}
+
+	bool doSlowMotionCheck()
+	{
+		if(lastPieceLaunched.rigidbody.velocity.magnitude < slowMotionTriggerSpeed || lastPieceLaunched.transform.position.y < boardOffset.y)
+		{
+			checkSlowMotion = false;
+			return false;
+		}
+		//find chess piece of opposing color in radius
+		Collider[] colliders = Physics.OverlapSphere (lastPieceLaunched.transform.position, slowMotionTriggerDistance);
+	    foreach(Collider hit in colliders) 
+	    {
+	        ChessPiece chessComponent = hit.transform.parent.parent.gameObject.GetComponent<ChessPiece>();
+	        if(chessComponent != null && lastPieceLaunched.gameObject.GetComponent<ChessPiece>().team != chessComponent.team)
+	        	return true;
+	    }
+
+		return false;
+	}
+
+	void activateSlowMotion()
+	{
+		slowMotion = true;
+		checkSlowMotion = false;
+		slowMotionTimer = 0.0f;
+		Time.timeScale = slowMotionDilation;
+		Time.fixedDeltaTime = 0.02f * slowMotionDilation;
+		GetComponent<AudioSource>().PlayOneShot(enterSlowMotionSound);
+	}
+
+	void disableSlowMotion()
+	{
+		slowMotion = false;
+		Time.timeScale = 1.0f;
+		Time.fixedDeltaTime = 0.02f;
+		//AudioSource.PlayClipAtPoint(exitSlowMotionSound, Camera.main.transform.position);
+	}
+
+	void updateSlowMotion()
+	{
+		slowMotionTimer += Time.deltaTime * (1.0f / Time.timeScale);
+		if(slowMotionTimer > slowMotionMinDuration)
+		{
+			disableSlowMotion();
+		}
+	}
+
+	static public bool slowMotionEnabled()
+	{
+		return slowMotion;
+	}
+
 
 	//key - none = 0, 
 	//White:

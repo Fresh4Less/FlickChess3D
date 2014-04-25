@@ -3,6 +3,10 @@ guid: e2451c3d7d55d9843bb791babd9a6ebd
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
+  - enterSlowMotionSound: {fileID: 8300000, guid: 296edbb34d23f5d49a355d755301dc88,
+      type: 3}
+  - exitSlowMotionSound: {fileID: 8300000, guid: 9345ec442bf4dd2408f4a0e83c0ab195,
+      type: 3}
   - BlackBishop_Prefab: {fileID: 100000, guid: cc8016bdc73327d43b7f752ba8cee228, type: 2}
   - BlackKing_Prefab: {fileID: 100000, guid: cf789ce4d851fd04095bbbf6e3d763b8, type: 2}
   - BlackKnight_Prefab: {fileID: 100000, guid: b988fe7f432079b43bb786e961612d99, type: 2}
