@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 
 	private bool networkedGame = false;
 	private List<GameObject> chessPieces;
-	private List<GameObject> chessPiecePrefabs;
+	public List<GameObject> chessPiecePrefabs;
 
 	private Vector3 boardOffset = new Vector3(-3.5f,0.0f,-3.5f);
 	private Vector2 squareSize = new Vector3(1.0f,1.0f);
