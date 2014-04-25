@@ -598,6 +598,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9bfc92e854fcddb41aa676a7c3d86db4, type: 3}
   collisionSlowMotionSound: {fileID: 8300000, guid: 942df957108249a4082759b11d926158,
     type: 3}
+  fallTrail: {fileID: 100000, guid: becc0fc3c7c1321469aa3a8b08c493d9, type: 2}
   team: 1
 --- !u!1001 &100100000
 Prefab:
