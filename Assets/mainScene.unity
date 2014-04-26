@@ -310,6 +310,10 @@ GameObject:
   - 45: {fileID: 1123859085}
   - 82: {fileID: 1123859086}
   - 114: {fileID: 1123859087}
+  - 114: {fileID: 1123859091}
+  - 114: {fileID: 1123859090}
+  - 114: {fileID: 1123859089}
+  - 148: {fileID: 1123859088}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -506,6 +510,71 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailPrefab: {fileID: 100000, guid: 7368bfe399726384a99c9ef432696212, type: 2}
+--- !u!148 &1123859088
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123859077}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 1123859082}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
+--- !u!114 &1123859089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123859077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e10dfbafd78824cae1c0ff66bdae50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1123859090}
+  chatLog: {fileID: 1123859091}
+--- !u!114 &1123859090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123859077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853702a386cb36c4c8e7fbf71a71ab91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1123859083}
+  networkManager: {fileID: 1123859089}
+  playerName: 
+--- !u!114 &1123859091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1123859077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d05846dcbe3847742b921a8b45201d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1123859090}
+  screenRect:
+    serializedVersion: 2
+    x: .200000003
+    y: .699999988
+    width: .600000024
+    height: 1
+  isActive: 0
+  boxScreenRect:
+    serializedVersion: 2
+    x: .200000003
+    y: .699999988
+    width: .600000024
+    height: .100000001
+  boxText: 
 --- !u!1 &1983528145
 GameObject:
   m_ObjectHideFlags: 0
