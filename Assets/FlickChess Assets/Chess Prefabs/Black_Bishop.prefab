@@ -551,6 +551,8 @@ MonoBehaviour:
   collisionSlowMotionSound: {fileID: 8300000, guid: 942df957108249a4082759b11d926158,
     type: 3}
   fallTrail: {fileID: 100000, guid: becc0fc3c7c1321469aa3a8b08c493d9, type: 2}
+  StarEffect: {fileID: 100000, guid: 4dd97f99e95be104db3140c5893c05aa, type: 2}
+  MeteorEffect: {fileID: 100002, guid: 10d75e9a80adb2e449959714760f9d98, type: 3}
   team: 1
 --- !u!1001 &100100000
 Prefab:

@@ -1,0 +1,13 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FlickChess Assets\Scripts\ChessPiece.cs">
+    <Files>
+      <File FileName="Assets\FlickChess Assets\Scripts\ChessPiece.cs" Line="129" Column="20" />
+      <File FileName="Assets\FlickChess Assets\Scripts\ChessPiece.cs" Line="147" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
