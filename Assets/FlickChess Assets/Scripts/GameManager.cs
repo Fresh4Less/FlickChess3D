@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour {
 			flickChessPieceAtMouse();
 	}
 
-	void startNewGameLocal()
+	public void startNewGameLocal()
 	{
 		Debug.Log("NEW LOCAL GAME");
 		networkedGame = false;
@@ -127,6 +127,11 @@ public class GameManager : MonoBehaviour {
 				chessPieces.Add(obj);
 			}
 		}
+	}
+
+	public void startNewGameNetworked()
+	{
+		Debug.Log("NEW NETWORKED GAME");
 	}
 
 	void flickChessPieceAtMouse()
