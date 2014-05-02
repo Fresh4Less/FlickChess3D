@@ -46,29 +46,6 @@ public class ChessPiece : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(Network.isServer && transform.position.y > -20)
-		{
-			clientUpdateTimer += Time.deltaTime;
-			if(clientUpdateTimer > clientUpdateDelay)
-			{
-				clientUpdateTimer = 0.0f;
-				networkView.RPC("updateClientChessPiecePhysicsData", RPCMode.Others, networkView.viewID, transform.position, transform.rotation, rigidbody.velocity, rigidbody.angularVelocity);
-			}
-			if(freefallTime > 15)
-			{
-				Network.Destroy(gameObject);
-			}
-		}
-
-		if(!Network.isServer && !Network.isClient)
-		{
-			if(freefallTime > 15)
-			{
-				Destroy(gameObject);
-			}
-		}
-
 		if(transform.position.y < -20)
 		{
 			freefallTime += Time.deltaTime;
@@ -146,12 +123,36 @@ public class ChessPiece : MonoBehaviour {
 			}
 
 			if(transform.position.y < -2000)
-				Destroy(star);
 				Destroy(meteor);
-				Destroy(trail);
 		}
 	
 	}
+
+	void FixedUpdate()
+	{
+		if(Network.isServer && transform.position.y > -20)
+		{
+			clientUpdateTimer += Time.deltaTime;
+			if(clientUpdateTimer > clientUpdateDelay)
+			{
+				clientUpdateTimer = 0.0f;
+				networkView.RPC("updateClientChessPiecePhysicsData", RPCMode.Others, networkView.viewID, transform.position, transform.rotation, rigidbody.velocity, rigidbody.angularVelocity);
+			}
+			if(freefallTime > 15)
+			{
+				Network.Destroy(gameObject);
+			}
+		}
+
+		if(!Network.isServer && !Network.isClient)
+		{
+			if(freefallTime > 15)
+			{
+				Destroy(gameObject);
+			}
+		}
+	}
+
 	void OnCollisionEnter(Collision collision)
 	{
 		//update clients with positions, rotations, and velocities

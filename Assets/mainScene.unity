@@ -19,7 +19,7 @@ RenderSettings:
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
-  m_SkyboxMaterial: {fileID: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 16522f49031ff414abdf1f83f1b6a36c, type: 2}
   m_HaloStrength: .5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -256,7 +256,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 3
   m_Type: 1
-  m_Color: {r: 1, g: .814705908, b: .536764741, a: 1}
+  m_Color: {r: .897058845, g: 1, b: 1, a: 1}
   m_Intensity: .400000006
   m_Range: 10
   m_SpotAngle: 30
@@ -288,7 +288,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870431287}
-  m_LocalRotation: {x: .274326831, y: .236529902, z: -.083154656, w: .928376973}
+  m_LocalRotation: {x: .865989923, y: .43187815, z: -.109246522, w: .227173716}
   m_LocalPosition: {x: 0, y: 5.43908691, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -306,7 +306,6 @@ GameObject:
   - 124: {fileID: 1123859079}
   - 81: {fileID: 1123859078}
   - 114: {fileID: 1123859084}
-  - 45: {fileID: 1123859085}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -398,14 +397,6 @@ MonoBehaviour:
   zoomRate: 40
   panSpeed: .300000012
   zoomDampening: 5
---- !u!45 &1123859085
-Skybox:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
-  m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 9ba05f538ee36044da5cd2a4f14a8b18, type: 2}
 --- !u!1 &1983528145
 GameObject:
   m_ObjectHideFlags: 0
