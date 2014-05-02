@@ -618,9 +618,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870431287}
-  m_LocalRotation: {x: .274326831, y: .236529902, z: -.083154656, w: .928376973}
-  m_LocalPosition: {x: 0, y: 5.43908691, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .204803452, y: .242039755, z: -.0654052049, w: .946147203}
+  m_LocalPosition: {x: -1.29561543, y: 1.62907362, z: -2.14295673}
+  m_LocalScale: {x: 5.22718668, y: 5.22718668, z: 5.22718668}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1123859077
@@ -765,7 +765,7 @@ Skybox:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1123859077}
   m_Enabled: 1
-  m_CustomSkybox: {fileID: 2100000, guid: 9ba05f538ee36044da5cd2a4f14a8b18, type: 2}
+  m_CustomSkybox: {fileID: 2100000, guid: 16522f49031ff414abdf1f83f1b6a36c, type: 2}
 --- !u!82 &1123859086
 AudioSource:
   m_ObjectHideFlags: 0
@@ -878,6 +878,32 @@ Transform:
   m_LocalScale: {x: 1, y: .4228082, z: 1}
   m_Children:
   - {fileID: 1613728838}
+  m_Father: {fileID: 0}
+--- !u!1 &1230164010
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1230164011}
+  m_Layer: 0
+  m_Name: 
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1230164011
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1230164010}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.28903484, y: 1.51897907, z: -.699146986}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1613728837
 GameObject:
