@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour {
 	public static float slowMotionMinDuration = 1.0f;
 	public static float slowMotionDilation = 0.25f;
 
-
+	private bool sendRigidbodyData = false;
+	private int sendRigidbodyDelay = 0;
 
 	void Start () 
 	{
@@ -64,7 +65,7 @@ public class GameManager : MonoBehaviour {
 		chessPiecePrefabs.Add(BlackQueen_Prefab);
 		chessPiecePrefabs.Add(BlackRook_Prefab);
 
-		startNewGameLocal();
+		//startNewGameLocal();
 	}
 	
 	// Update is called once per frame
@@ -83,6 +84,21 @@ public class GameManager : MonoBehaviour {
 
 		if(Input.GetMouseButtonDown(0))
 			flickChessPieceAtMouse();
+	}
+
+	void FixedUpdate()
+	{
+		if(sendRigidbodyData)
+		{
+			sendRigidbodyDelay++;
+			if(sendRigidbodyDelay == 2)
+			{
+				GameObject obj = lastPieceLaunched;
+				networkView.RPC("onPieceFlicked", RPCMode.Others, obj.networkView.viewID, obj.transform.position, obj.transform.rotation, obj.rigidbody.velocity, obj.rigidbody.angularVelocity);
+				sendRigidbodyData = false;
+				sendRigidbodyDelay = 0;
+			}
+		}
 	}
 
 	public void startNewGameLocal()
@@ -132,14 +148,57 @@ public class GameManager : MonoBehaviour {
 	public void startNewGameNetworked()
 	{
 		Debug.Log("NEW NETWORKED GAME");
+		networkedGame = true;
+		if(Network.isServer)
+		{
+			destroyAllChessPiecesNetworked();
+			createAndSetupChessPiecesNetworked();
+		}	
+	}
+
+	void destroyAllChessPiecesNetworked()
+	{
+		foreach(GameObject obj in chessPieces)
+		{
+			Network.RemoveRPCs(obj.networkView.viewID);
+			Network.Destroy(obj);
+		}
+	}
+
+	void createAndSetupChessPiecesNetworked()
+	{
+		for(int file = 0; file < 8; file++)
+		{
+			for(int rank = 0; rank < 8; rank++)
+			{
+				int pieceType = chessBoardSetupStandard[7-rank, file];
+				GameObject objPrefab = chessPiecePrefabs[pieceType];
+				if(objPrefab == null)
+					continue;
+					GameObject obj = null;
+					if(pieceType < 7) //white piece
+					{
+				obj = (GameObject) Network.Instantiate(objPrefab,
+														 new Vector3(file * squareSize.x + boardOffset.x,
+														 			 -objPrefab.transform.Find("Base").position.y + boardOffset.y,
+														 			 rank * squareSize.y + boardOffset.z), 
+														 Quaternion.identity, 0);
+				}
+				else
+				obj = (GameObject) Network.Instantiate(objPrefab,
+														 new Vector3(file * squareSize.x + boardOffset.x,
+														 			 -objPrefab.transform.Find("Base").position.y + boardOffset.y,
+														 			 rank * squareSize.y + boardOffset.z), 
+														 Quaternion.Euler(0,180,0), 0);
+				//if(pieceType > 6) //is a black piece
+				//	obj.transform.Rotate(new Vector3(0,180,0));
+				chessPieces.Add(obj);
+			}
+		}
 	}
 
 	void flickChessPieceAtMouse()
 	{
-		// Make sure the user pressed the mouse down
-		if (!Input.GetMouseButtonDown (0))
-			return;
-
 		 Camera mainCamera = Camera.main;
 			
 		// We need to actually hit an object
@@ -154,10 +213,44 @@ public class GameManager : MonoBehaviour {
 		if(hit.transform.tag != "ChessPiece")
 			return;
 
-			hit.rigidbody.AddForceAtPosition(rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+			if(networkedGame)
+			{
+				applyForceToPiece(hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+				if(Network.isClient)
+				{
+					networkView.RPC("applyForceToPiece", RPCMode.Server, hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+				}
+			}
+			else
+			{
+				applyForceToPiece(hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+			}
 
-			lastPieceLaunched = hit.transform.gameObject;
-			checkSlowMotion = true;
+			//lastPieceLaunched = hit.transform.gameObject;
+			//checkSlowMotion = true;
+	}
+
+	[RPC]
+	void applyForceToPiece(NetworkViewID piece, Vector3 force, Vector3 point)
+	{
+		var obj = NetworkView.Find(piece).gameObject;
+		obj.rigidbody.AddForceAtPosition(force, point);
+		onPieceFlicked(piece, obj.transform.position, obj.transform.rotation, obj.rigidbody.velocity, obj.rigidbody.angularVelocity);
+		if(networkedGame && Network.isServer)
+		{
+			sendRigidbodyData = true;
+		}
+
+	}
+
+	[RPC]
+	public void onPieceFlicked(NetworkViewID piece, Vector3 position, Quaternion rotation, Vector3 velocity, Vector3 angularVelocity)
+	{
+		var obj = NetworkView.Find(piece).gameObject;
+		lastPieceLaunched = obj;
+		checkSlowMotion = true;
+		if(networkedGame && Network.isClient)
+			obj.GetComponent<ChessPiece>().updateClientChessPiecePhysicsData(piece, position, rotation, velocity, angularVelocity);
 	}
 
 	bool doSlowMotionCheck()

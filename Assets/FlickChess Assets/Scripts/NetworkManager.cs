@@ -76,7 +76,6 @@ public class NetworkManager : MonoBehaviour {
 	void setPlayerInfo(string playerName, NetworkMessageInfo messageInfo)
 	{
 		playerConnectedSlots.Add(new NetworkPlayerInfo(messageInfo.sender, playerName));
-		uiManager.networkView.RPC("setPlayerNumber", messageInfo.sender);
 		chatLog.networkView.RPC("addMessage", RPCMode.All, playerName + " (" + messageInfo.sender.ipAddress + ") Connected (" + playerConnectedSlots.Count + "/" + maxPlayers + ").");
 	}
 

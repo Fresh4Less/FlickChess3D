@@ -11,6 +11,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 114: {fileID: 11400000}
   - 82: {fileID: 8200000}
+  - 148: {fileID: 14800000}
   m_Layer: 0
   m_Name: White_Bishop
   m_TagString: ChessPiece
@@ -554,6 +555,18 @@ MonoBehaviour:
   StarEffect: {fileID: 100000, guid: 4dd97f99e95be104db3140c5893c05aa, type: 2}
   MeteorEffect: {fileID: 100002, guid: 10d75e9a80adb2e449959714760f9d98, type: 3}
   team: 0
+--- !u!148 &14800000
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 0}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

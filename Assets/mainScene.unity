@@ -305,15 +305,8 @@ GameObject:
   - 92: {fileID: 1123859080}
   - 124: {fileID: 1123859079}
   - 81: {fileID: 1123859078}
-  - 114: {fileID: 1123859083}
   - 114: {fileID: 1123859084}
   - 45: {fileID: 1123859085}
-  - 82: {fileID: 1123859086}
-  - 114: {fileID: 1123859087}
-  - 114: {fileID: 1123859091}
-  - 114: {fileID: 1123859090}
-  - 114: {fileID: 1123859089}
-  - 148: {fileID: 1123859088}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -382,33 +375,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1123859083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2451c3d7d55d9843bb791babd9a6ebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enterSlowMotionSound: {fileID: 8300000, guid: 296edbb34d23f5d49a355d755301dc88,
-    type: 3}
-  exitSlowMotionSound: {fileID: 8300000, guid: 9345ec442bf4dd2408f4a0e83c0ab195, type: 3}
-  BlackBishop_Prefab: {fileID: 100000, guid: cc8016bdc73327d43b7f752ba8cee228, type: 2}
-  BlackKing_Prefab: {fileID: 100000, guid: cf789ce4d851fd04095bbbf6e3d763b8, type: 2}
-  BlackKnight_Prefab: {fileID: 100000, guid: b988fe7f432079b43bb786e961612d99, type: 2}
-  BlackPawn_Prefab: {fileID: 100000, guid: dfe5cf856167c204086c531383d30ef6, type: 2}
-  BlackQueen_Prefab: {fileID: 100000, guid: 950f91c0de25dbd4f89e4109b0910948, type: 2}
-  BlackRook_Prefab: {fileID: 100000, guid: de46c6fccd394e5418dda611c22417ec, type: 2}
-  WhiteBishop_Prefab: {fileID: 100000, guid: e963ed1c8447b1b42a0ee72b2f84d91e, type: 2}
-  WhiteKing_Prefab: {fileID: 100000, guid: df57d59011af8ee4c8d0806e86e53f54, type: 2}
-  WhiteKnight_Prefab: {fileID: 100000, guid: 3fb76705724eb28459a00801ff9b20be, type: 2}
-  WhitePawn_Prefab: {fileID: 100000, guid: 362c92f344ab3ff45ac939ff7a1e8c49, type: 2}
-  WhiteQueen_Prefab: {fileID: 100000, guid: fc245d98e77a6084c9b7c7cb5f548d26, type: 2}
-  WhiteRook_Prefab: {fileID: 100000, guid: 8b88257d9d84e2f4ab2f3279752c8302, type: 2}
-  chessPiecePrefabs: []
 --- !u!114 &1123859084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,12 +406,61 @@ Skybox:
   m_GameObject: {fileID: 1123859077}
   m_Enabled: 1
   m_CustomSkybox: {fileID: 2100000, guid: 9ba05f538ee36044da5cd2a4f14a8b18, type: 2}
---- !u!82 &1123859086
+--- !u!1 &1983528145
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: f01ee6d45edc3e9489547664514eb55a, type: 2}
+  m_PrefabInternal: {fileID: 855680512}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1983528146}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983528146
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: f01ee6d45edc3e9489547664514eb55a, type: 2}
+  m_PrefabInternal: {fileID: 855680512}
+  m_GameObject: {fileID: 1983528145}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2114364674}
+  m_Father: {fileID: 0}
+--- !u!1 &1999076211
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1999076219}
+  - 114: {fileID: 1999076218}
+  - 114: {fileID: 1999076217}
+  - 114: {fileID: 1999076216}
+  - 114: {fileID: 1999076215}
+  - 114: {fileID: 1999076214}
+  - 148: {fileID: 1999076213}
+  - 82: {fileID: 1999076212}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1999076212
 AudioSource:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
+  m_GameObject: {fileID: 1999076211}
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
@@ -498,69 +513,30 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &1123859087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a15f726797315e645bcc28993ef1e3ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trailPrefab: {fileID: 100000, guid: 7368bfe399726384a99c9ef432696212, type: 2}
---- !u!148 &1123859088
+--- !u!148 &1999076213
 NetworkView:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
+  m_GameObject: {fileID: 1999076211}
   m_Enabled: 1
   m_StateSynchronization: 1
-  m_Observed: {fileID: 1123859082}
+  m_Observed: {fileID: 1999076219}
   m_ViewID:
     m_ID: 1
     m_Type: 1
---- !u!114 &1123859089
+--- !u!114 &1999076214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12e10dfbafd78824cae1c0ff66bdae50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiManager: {fileID: 1123859090}
-  chatLog: {fileID: 1123859091}
---- !u!114 &1123859090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 853702a386cb36c4c8e7fbf71a71ab91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 1123859083}
-  networkManager: {fileID: 1123859089}
-  playerName: 
---- !u!114 &1123859091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1123859077}
+  m_GameObject: {fileID: 1999076211}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d05846dcbe3847742b921a8b45201d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 1123859090}
+  uiManager: {fileID: 1999076216}
   screenRect:
     serializedVersion: 2
     x: .200000003
@@ -575,32 +551,82 @@ MonoBehaviour:
     width: .600000024
     height: .100000001
   boxText: 
---- !u!1 &1983528145
-GameObject:
+--- !u!114 &1999076215
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: f01ee6d45edc3e9489547664514eb55a, type: 2}
-  m_PrefabInternal: {fileID: 855680512}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1983528146}
-  m_Layer: 0
-  m_Name: Board
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1983528146
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999076211}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a15f726797315e645bcc28993ef1e3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trailPrefab: {fileID: 100000, guid: 7368bfe399726384a99c9ef432696212, type: 2}
+--- !u!114 &1999076216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999076211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 853702a386cb36c4c8e7fbf71a71ab91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1999076218}
+  networkManager: {fileID: 1999076217}
+  playerName: 
+--- !u!114 &1999076217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999076211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12e10dfbafd78824cae1c0ff66bdae50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 1999076216}
+  chatLog: {fileID: 1999076214}
+--- !u!114 &1999076218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999076211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2451c3d7d55d9843bb791babd9a6ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterSlowMotionSound: {fileID: 8300000, guid: 296edbb34d23f5d49a355d755301dc88,
+    type: 3}
+  exitSlowMotionSound: {fileID: 8300000, guid: 9345ec442bf4dd2408f4a0e83c0ab195, type: 3}
+  BlackBishop_Prefab: {fileID: 100000, guid: cc8016bdc73327d43b7f752ba8cee228, type: 2}
+  BlackKing_Prefab: {fileID: 100000, guid: cf789ce4d851fd04095bbbf6e3d763b8, type: 2}
+  BlackKnight_Prefab: {fileID: 100000, guid: b988fe7f432079b43bb786e961612d99, type: 2}
+  BlackPawn_Prefab: {fileID: 100000, guid: dfe5cf856167c204086c531383d30ef6, type: 2}
+  BlackQueen_Prefab: {fileID: 100000, guid: 950f91c0de25dbd4f89e4109b0910948, type: 2}
+  BlackRook_Prefab: {fileID: 100000, guid: de46c6fccd394e5418dda611c22417ec, type: 2}
+  WhiteBishop_Prefab: {fileID: 100000, guid: e963ed1c8447b1b42a0ee72b2f84d91e, type: 2}
+  WhiteKing_Prefab: {fileID: 100000, guid: df57d59011af8ee4c8d0806e86e53f54, type: 2}
+  WhiteKnight_Prefab: {fileID: 100000, guid: 3fb76705724eb28459a00801ff9b20be, type: 2}
+  WhitePawn_Prefab: {fileID: 100000, guid: 362c92f344ab3ff45ac939ff7a1e8c49, type: 2}
+  WhiteQueen_Prefab: {fileID: 100000, guid: fc245d98e77a6084c9b7c7cb5f548d26, type: 2}
+  WhiteRook_Prefab: {fileID: 100000, guid: 8b88257d9d84e2f4ab2f3279752c8302, type: 2}
+  chessPiecePrefabs: []
+--- !u!4 &1999076219
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: f01ee6d45edc3e9489547664514eb55a, type: 2}
-  m_PrefabInternal: {fileID: 855680512}
-  m_GameObject: {fileID: 1983528145}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999076211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2114364674}
+  m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2114364673
 GameObject:
