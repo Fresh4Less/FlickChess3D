@@ -60,7 +60,7 @@ public class ChatLog : MonoBehaviour {
 		            }
 		            string str = boxText.Substring(bIndex, boxText.Length - bIndex);
 		            if(str.Length > 0)
-		                networkView.RPC("addMessage", RPCMode.All, uiManager.playerName + ": " + str);
+		                GetComponent<NetworkView>().RPC("addMessage", RPCMode.All, uiManager.playerName + ": " + str);
 		            boxText = "";
 		            isActive = false;
 		            fadeoutTimer = 0.0f;

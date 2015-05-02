@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour {
 			if(!Network.isClient && !Network.isServer)
 				startNewGameLocalUI();
 			else
-				networkView.RPC("startNewGameNetworkedUI", RPCMode.AllBuffered);
+				GetComponent<NetworkView>().RPC("startNewGameNetworkedUI", RPCMode.AllBuffered);
 		}
 	}
 

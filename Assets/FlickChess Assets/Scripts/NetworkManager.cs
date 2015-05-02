@@ -50,13 +50,13 @@ public class NetworkManager : MonoBehaviour {
 
 	void onConnected()
 	{
-		networkView.RPC("setPlayerInfo", RPCMode.Server, uiManager.playerName);
+		GetComponent<NetworkView>().RPC("setPlayerInfo", RPCMode.Server, uiManager.playerName);
 	}
 
 	void OnServerInitialized()
 	{
 		Debug.Log("Server Initialized");
-		uiManager.networkView.RPC("startNewGameNetworkedUI", RPCMode.AllBuffered);
+		uiManager.GetComponent<NetworkView>().RPC("startNewGameNetworkedUI", RPCMode.AllBuffered);
 		playerConnectedSlots.Add(new NetworkPlayerInfo(Network.player, uiManager.playerName));
 	}
 
@@ -76,7 +76,7 @@ public class NetworkManager : MonoBehaviour {
 	void setPlayerInfo(string playerName, NetworkMessageInfo messageInfo)
 	{
 		playerConnectedSlots.Add(new NetworkPlayerInfo(messageInfo.sender, playerName));
-		chatLog.networkView.RPC("addMessage", RPCMode.All, playerName + " (" + messageInfo.sender.ipAddress + ") Connected (" + playerConnectedSlots.Count + "/" + maxPlayers + ").");
+		chatLog.GetComponent<NetworkView>().RPC("addMessage", RPCMode.All, playerName + " (" + messageInfo.sender.ipAddress + ") Connected (" + playerConnectedSlots.Count + "/" + maxPlayers + ").");
 	}
 
 	void OnPlayerDisconnected(NetworkPlayer player)
@@ -85,7 +85,7 @@ public class NetworkManager : MonoBehaviour {
 		{
 			if(playerInfo.m_networkPlayer == player)
 			{
-				chatLog.networkView.RPC("addMessage", RPCMode.All, "User " + playerInfo.m_playerName + " (" + player.ipAddress + ") disconnected.");
+				chatLog.GetComponent<NetworkView>().RPC("addMessage", RPCMode.All, "User " + playerInfo.m_playerName + " (" + player.ipAddress + ") disconnected.");
 				break;
 			}
 		}

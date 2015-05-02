@@ -27,7 +27,7 @@ public class SpawnPieces : MonoBehaviour {
 		GameObject obj = (GameObject) Instantiate(objPrefab, randomPosition, Quaternion.identity);
 		Vector3 randomDirection = new Vector3(Random.Range(-359, 359),Random.Range(-359, 359),Random.Range(-359, 359));
 		Vector3 randomTorque = new Vector3(Random.Range(-359, 359),Random.Range(-359, 359),Random.Range(-359, 359));
-		obj.rigidbody.AddForce(randomDirection * (1.0f/Time.timeScale));
+		obj.GetComponent<Rigidbody>().AddForce(randomDirection * (1.0f/Time.timeScale));
 		//obj.rigidbody.AddTorque(randomTorque * 1000 * (1.0f/Time.timeScale));
 	}
 }

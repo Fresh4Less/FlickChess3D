@@ -31,7 +31,7 @@ public class ChessPiece : MonoBehaviour {
 	void Start () {
 		//colors!
 		//transform.Find("Model").GetChild(0).GetChild(0).renderer.material.color = new Color(Random.value, Random.value, Random.value);
-		modelRenderer = transform.Find("Model").GetChild(0).GetChild(0).renderer;
+		modelRenderer = transform.Find("Model").GetChild(0).GetChild(0).GetComponent<Renderer>();
 		freefallTime = 0.0f;
 		freefallDuration1 = 2.0f;
 		freefallDuration2 = 3.0f;
@@ -66,7 +66,7 @@ public class ChessPiece : MonoBehaviour {
 					meteor = (GameObject) Instantiate(MeteorEffect, transform.position, Quaternion.Euler(1.0f,1.0f,1.0f));
 					meteor.transform.localScale = new Vector3(0.0f, 0.1f, 0.0f);
 
-					rigidbody.useGravity = false;
+					GetComponent<Rigidbody>().useGravity = false;
 				}
 			} 
 			else if(freefallTime < freefallDuration2) 
@@ -105,8 +105,8 @@ public class ChessPiece : MonoBehaviour {
 				star.transform.localScale = new Vector3(scale,scale,scale);
 
 				//Meteor Stuff
-				meteor.transform.position = new Vector3(transform.position.x+this.rigidbody.velocity.normalized.x, transform.position.y-0.7f, transform.position.z+this.rigidbody.velocity.normalized.z);
-				meteor.transform.up = -this.rigidbody.velocity.normalized;
+				meteor.transform.position = new Vector3(transform.position.x+this.GetComponent<Rigidbody>().velocity.normalized.x, transform.position.y-0.7f, transform.position.z+this.GetComponent<Rigidbody>().velocity.normalized.z);
+				meteor.transform.up = -this.GetComponent<Rigidbody>().velocity.normalized;
 				//Fade in the effect
 
 
@@ -136,7 +136,7 @@ public class ChessPiece : MonoBehaviour {
 			if(clientUpdateTimer > clientUpdateDelay)
 			{
 				clientUpdateTimer = 0.0f;
-				networkView.RPC("updateClientChessPiecePhysicsData", RPCMode.Others, networkView.viewID, transform.position, transform.rotation, rigidbody.velocity, rigidbody.angularVelocity);
+				GetComponent<NetworkView>().RPC("updateClientChessPiecePhysicsData", RPCMode.Others, GetComponent<NetworkView>().viewID, transform.position, transform.rotation, GetComponent<Rigidbody>().velocity, GetComponent<Rigidbody>().angularVelocity);
 			}
 			if(freefallTime > 15)
 			{
@@ -159,18 +159,18 @@ public class ChessPiece : MonoBehaviour {
 		if(Network.isServer && collision.gameObject.GetComponent<ChessPiece>() != null)
 		{
 			GameObject collisionObj = collision.gameObject;
-			networkView.RPC("updateClientChessPiecePhysicsData", RPCMode.Others, networkView.viewID, transform.position, transform.rotation, rigidbody.velocity, rigidbody.angularVelocity);
-			networkView.RPC("updateClientChessPiecePhysicsData", RPCMode.Others, 
-				collisionObj.networkView.viewID, collisionObj.transform.position, collisionObj.transform.rotation, collisionObj.rigidbody.velocity, collisionObj.rigidbody.angularVelocity);
+			GetComponent<NetworkView>().RPC("updateClientChessPiecePhysicsData", RPCMode.Others, GetComponent<NetworkView>().viewID, transform.position, transform.rotation, GetComponent<Rigidbody>().velocity, GetComponent<Rigidbody>().angularVelocity);
+			GetComponent<NetworkView>().RPC("updateClientChessPiecePhysicsData", RPCMode.Others, 
+				collisionObj.GetComponent<NetworkView>().viewID, collisionObj.transform.position, collisionObj.transform.rotation, collisionObj.GetComponent<Rigidbody>().velocity, collisionObj.GetComponent<Rigidbody>().angularVelocity);
 		}
 
 		if(collision.relativeVelocity.magnitude > 2)
 		{
 			if(GameManager.slowMotionEnabled())
-				audio.PlayOneShot(collisionSlowMotionSound, 0.3f);
+				GetComponent<AudioSource>().PlayOneShot(collisionSlowMotionSound, 0.3f);
 			else
 			{
-				audio.PlayOneShot(collisionSounds[Random.Range(0,collisionSounds.Length - 1)]);
+				GetComponent<AudioSource>().PlayOneShot(collisionSounds[Random.Range(0,collisionSounds.Length - 1)]);
 			}
 		}
 	}
@@ -181,8 +181,8 @@ public class ChessPiece : MonoBehaviour {
 		GameObject obj = NetworkView.Find(body).gameObject;
 		obj.transform.position = position;
 		obj.transform.rotation = rotation;
-		obj.rigidbody.velocity = velocity;
-		obj.rigidbody.angularVelocity = angularVelocity;
+		obj.GetComponent<Rigidbody>().velocity = velocity;
+		obj.GetComponent<Rigidbody>().angularVelocity = angularVelocity;
 	}
 
 

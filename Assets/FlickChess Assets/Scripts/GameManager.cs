@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour {
 			if(sendRigidbodyDelay == 2)
 			{
 				GameObject obj = lastPieceLaunched;
-				networkView.RPC("onPieceFlicked", RPCMode.Others, obj.networkView.viewID, obj.transform.position, obj.transform.rotation, obj.rigidbody.velocity, obj.rigidbody.angularVelocity);
+				GetComponent<NetworkView>().RPC("onPieceFlicked", RPCMode.Others, obj.GetComponent<NetworkView>().viewID, obj.transform.position, obj.transform.rotation, obj.GetComponent<Rigidbody>().velocity, obj.GetComponent<Rigidbody>().angularVelocity);
 				sendRigidbodyData = false;
 				sendRigidbodyDelay = 0;
 			}
@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour {
 	{
 		foreach(GameObject obj in chessPieces)
 		{
-			Network.RemoveRPCs(obj.networkView.viewID);
+			Network.RemoveRPCs(obj.GetComponent<NetworkView>().viewID);
 			Network.Destroy(obj);
 		}
 	}
@@ -215,15 +215,15 @@ public class GameManager : MonoBehaviour {
 
 			if(networkedGame)
 			{
-				applyForceToPiece(hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+				applyForceToPiece(hit.transform.GetComponent<NetworkView>().viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
 				if(Network.isClient)
 				{
-					networkView.RPC("applyForceToPiece", RPCMode.Server, hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+					GetComponent<NetworkView>().RPC("applyForceToPiece", RPCMode.Server, hit.transform.GetComponent<NetworkView>().viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
 				}
 			}
 			else
 			{
-				applyForceToPiece(hit.transform.networkView.viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
+				applyForceToPiece(hit.transform.GetComponent<NetworkView>().viewID, rayToMouse.direction * 1000 * (1.0f/Time.timeScale), hit.point);
 			}
 
 			//lastPieceLaunched = hit.transform.gameObject;
@@ -234,8 +234,8 @@ public class GameManager : MonoBehaviour {
 	void applyForceToPiece(NetworkViewID piece, Vector3 force, Vector3 point)
 	{
 		var obj = NetworkView.Find(piece).gameObject;
-		obj.rigidbody.AddForceAtPosition(force, point);
-		onPieceFlicked(piece, obj.transform.position, obj.transform.rotation, obj.rigidbody.velocity, obj.rigidbody.angularVelocity);
+		obj.GetComponent<Rigidbody>().AddForceAtPosition(force, point);
+		onPieceFlicked(piece, obj.transform.position, obj.transform.rotation, obj.GetComponent<Rigidbody>().velocity, obj.GetComponent<Rigidbody>().angularVelocity);
 		if(networkedGame && Network.isServer)
 		{
 			sendRigidbodyData = true;
@@ -255,7 +255,7 @@ public class GameManager : MonoBehaviour {
 
 	bool doSlowMotionCheck()
 	{
-		if(lastPieceLaunched.rigidbody.velocity.magnitude < slowMotionTriggerSpeed || lastPieceLaunched.transform.position.y < boardOffset.y)
+		if(lastPieceLaunched.GetComponent<Rigidbody>().velocity.magnitude < slowMotionTriggerSpeed || lastPieceLaunched.transform.position.y < boardOffset.y)
 		{
 			checkSlowMotion = false;
 			return false;
